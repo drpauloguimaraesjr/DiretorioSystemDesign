@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 0.5rem;
+  --background: 45 10% 96%;
+  --foreground: 45 5% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 45 5% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 45 5% 10%;
+  --primary: 45 80% 55%;
+  --primary-foreground: 45 5% 10%;
+  --secondary: 45 10% 90%;
+  --secondary-foreground: 45 5% 10%;
+  --muted: 45 10% 92%;
+  --muted-foreground: 45 5% 45%;
+  --accent: 45 10% 92%;
+  --accent-foreground: 45 5% 10%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 45 10% 88%;
+  --input: 45 10% 88%;
+  --ring: 45 80% 55%;
+  --chart-1: 45 80% 55%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 220 70% 50%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
+}
+
+.dark {
+  --background: 45 5% 8%;
+  --foreground: 45 5% 95%;
+  --card: 45 5% 12%;
+  --card-foreground: 45 5% 95%;
+  --popover: 45 5% 12%;
+  --popover-foreground: 45 5% 95%;
+  --primary: 45 80% 55%;
+  --primary-foreground: 45 5% 10%;
+  --secondary: 45 5% 20%;
+  --secondary-foreground: 45 5% 95%;
+  --muted: 45 5% 20%;
+  --muted-foreground: 45 5% 60%;
+  --accent: 45 5% 20%;
+  --accent-foreground: 45 5% 95%;
+  --destructive: 0 62% 50%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 45 5% 20%;
+  --input: 45 5% 20%;
+  --ring: 45 80% 55%;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for code blocks */
+.code-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.code-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-scrollbar::-webkit-scrollbar-thumb {
+  background: #b0afa8;
+  border-radius: 3px;
+}
+
+.code-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #78776e;
+}
+
+/* Sidebar scrollbar */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: #d0cfc8;
+  border-radius: 2px;
+}
