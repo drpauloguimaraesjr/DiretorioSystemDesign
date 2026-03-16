@@ -176,7 +176,7 @@ const MistBackground: React.FC<MistBackgroundProps> = ({
     const mouseLoc = gl.getUniformLocation(program, 'u_mouse');
     const scrollLoc = gl.getUniformLocation(program, 'u_scrollProgress');
 
-    let mouse = { x: 0, y: 0 };
+    const mouse = { x: 0, y: 0 };
     const handleMouseMove = (e: MouseEvent) => {
       mouse.x = e.clientX;
       mouse.y = window.innerHeight - e.clientY;

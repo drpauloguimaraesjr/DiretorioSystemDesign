@@ -8,6 +8,7 @@ import { SplitText as GSAPSplitText } from "@/lib/gsap/SplitText";
 interface SplitTextProps {
   text: string;
   className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   trigger?: any;
   delay?: number;
   interactive?: boolean;
@@ -28,9 +29,10 @@ export default function SplitText({ text, className, trigger, delay = 0, interac
     }
 
     const ctx = gsap.context(() => {
-      let split: any;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      split = new GSAPSplitText(textRef.current!, {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const split: any = new GSAPSplitText(textRef.current!, {
         type: "chars,words",
         charsClass: "letter",
       });

@@ -3,23 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "@/lib/gsap/ScrollTrigger";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function HorizontalScroll({ data }: { data: any[] }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
 
-  if (!data) return null;
-
   useEffect(() => {
     setMounted(true);
     gsap.registerPlugin(ScrollTrigger);
 
-    if (!containerRef.current || !sectionRef.current) return;
+    if (!containerRef.current || !sectionRef.current || !data) return;
 
     const ctx = gsap.context(() => {
-      let scrollWidth = containerRef.current!.offsetWidth;
-      let amountToScroll = scrollWidth - window.innerWidth;
+      const scrollWidth = containerRef.current!.offsetWidth;
+      const amountToScroll = scrollWidth - window.innerWidth;
 
       if (amountToScroll > 0) {
         gsap.to(containerRef.current, {
@@ -41,13 +40,14 @@ export default function HorizontalScroll({ data }: { data: any[] }) {
         });
 
         // Skew effect
-        let proxy = { skew: 0 },
+        const proxy = { skew: 0 },
             skewSetter = gsap.quickSetter(".playground-card", "skewX", "deg"),
             clamp = gsap.utils.clamp(-15, 15);
 
         ScrollTrigger.create({
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onUpdate: (self: any) => {
-            let skew = clamp(self.getVelocity() / -400);
+            const skew = clamp(self.getVelocity() / -400);
             if (Math.abs(skew) > Math.abs(proxy.skew)) {
               proxy.skew = skew;
               gsap.to(proxy, {
@@ -66,7 +66,7 @@ export default function HorizontalScroll({ data }: { data: any[] }) {
     return () => ctx.revert();
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted || !data) return null;
 
   return (
     <div ref={sectionRef} className="horizontal-scroll-section">
@@ -94,6 +94,7 @@ export default function HorizontalScroll({ data }: { data: any[] }) {
         </div>
 
         <div ref={containerRef} className="scroll-content">
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {data.map((item: any, idx: number) => (
             <div key={idx} className="playground-card" data-cursor-text="EXPLORE">
               <div 

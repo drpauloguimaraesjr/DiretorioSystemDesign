@@ -93,57 +93,60 @@ export function FloatingCardsPreview() {
 
     return (
         <div className="w-full h-full flex items-center justify-center gap-4 bg-gradient-to-br from-neutral-50 to-neutral-100 p-6">
-            {cards.map((card, i) => {
-                const cardRef = useRef<HTMLDivElement>(null);
-                const x = useMotionValue(0);
-                const y = useMotionValue(0);
-                const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), { stiffness: 300, damping: 30 });
-                const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), { stiffness: 300, damping: 30 });
-
-                return (
-                    <motion.div
-                        key={i}
-                        ref={cardRef}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.15, duration: 0.6 }}
-                        onMouseMove={(e) => {
-                            if (!cardRef.current) return;
-                            const rect = cardRef.current.getBoundingClientRect();
-                            x.set((e.clientX - rect.left - rect.width / 2) / rect.width);
-                            y.set((e.clientY - rect.top - rect.height / 2) / rect.height);
-                        }}
-                        onMouseLeave={() => { x.set(0); y.set(0); setHovered(null); }}
-                        onMouseEnter={() => setHovered(i)}
-                        style={{ perspective: "800px", cursor: "pointer" }}
-                        className="flex-1"
-                    >
-                        <motion.div
-                            animate={{ scale: hovered === i ? 1.05 : 1 }}
-                            style={{
-                                borderRadius: "12px",
-                                overflow: "hidden",
-                                height: "200px",
-                                backgroundColor: card.color,
-                                transformStyle: "preserve-3d",
-                                rotateX, rotateY,
-                                position: "relative"
-                            }}
-                        >
-                            <div style={{
-                                position: "absolute", bottom: 0, left: 0, right: 0,
-                                padding: "16px",
-                                background: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
-                                color: "#fff"
-                            }}>
-                                <span style={{ fontSize: "0.55rem", opacity: 0.6, textTransform: "uppercase", letterSpacing: "0.1em" }}>{card.cat}</span>
-                                <h4 style={{ fontSize: "0.95rem", marginTop: "4px", fontWeight: 500 }}>{card.title}</h4>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                );
-            })}
+            {cards.map((card, i) => (
+                <FloatingCardPreviewItem key={i} card={card} i={i} hovered={hovered} setHovered={setHovered} />
+            ))}
         </div>
+    );
+}
+
+function FloatingCardPreviewItem({ card, i, hovered, setHovered }: { card: { title: string, cat: string, color: string }, i: number, hovered: number | null, setHovered: (idx: number | null) => void }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), { stiffness: 300, damping: 30 });
+    const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), { stiffness: 300, damping: 30 });
+
+    return (
+        <motion.div
+            ref={cardRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.15, duration: 0.6 }}
+            onMouseMove={(e) => {
+                if (!cardRef.current) return;
+                const rect = cardRef.current.getBoundingClientRect();
+                x.set((e.clientX - rect.left - rect.width / 2) / rect.width);
+                y.set((e.clientY - rect.top - rect.height / 2) / rect.height);
+            }}
+            onMouseLeave={() => { x.set(0); y.set(0); setHovered(null); }}
+            onMouseEnter={() => setHovered(i)}
+            style={{ perspective: "800px", cursor: "pointer" }}
+            className="flex-1"
+        >
+            <motion.div
+                animate={{ scale: hovered === i ? 1.05 : 1 }}
+                style={{
+                    borderRadius: "12px",
+                    overflow: "hidden",
+                    height: "200px",
+                    backgroundColor: card.color,
+                    transformStyle: "preserve-3d",
+                    rotateX, rotateY,
+                    position: "relative"
+                }}
+            >
+                <div style={{
+                    position: "absolute", bottom: 0, left: 0, right: 0,
+                    padding: "16px",
+                    background: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
+                    color: "#fff"
+                }}>
+                    <span style={{ fontSize: "0.55rem", opacity: 0.6, textTransform: "uppercase", letterSpacing: "0.1em" }}>{card.cat}</span>
+                    <h4 style={{ fontSize: "0.95rem", marginTop: "4px", fontWeight: 500 }}>{card.title}</h4>
+                </div>
+            </motion.div>
+        </motion.div>
     );
 }
 
@@ -452,6 +455,7 @@ export function HeroCarouselPreview() {
     useEffect(() => {
         const timer = setInterval(() => setCurrent(c => (c + 1) % colors.length), 2500);
         return () => clearInterval(timer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

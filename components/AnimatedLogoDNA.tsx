@@ -70,8 +70,7 @@ export default function AnimatedLogoDNA({
     mediaRecorder.start();
 
     // Render SVG para Canvas framerate fixo durante um ciclo
-    let frameId: number;
-    let startTime = performance.now();
+    const startTime = performance.now();
     let currentY = 0;
 
     const renderFrame = (timestamp: number) => {
@@ -102,13 +101,13 @@ export default function AnimatedLogoDNA({
         };
 
         if (elapsed < speed * 1.05 && isRecording) { // Grava 1 ciclo completo + 5% margem 
-            frameId = requestAnimationFrame(renderFrame);
+            requestAnimationFrame(renderFrame);
         } else if (isRecording) {
             mediaRecorder.stop();
         }
     };
 
-    frameId = requestAnimationFrame(renderFrame);
+    requestAnimationFrame(renderFrame);
   };
 
   return (
