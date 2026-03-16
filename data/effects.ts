@@ -34,10 +34,10 @@ export default function Home() {
       <aside className="w-72 border-r border-border flex flex-col h-screen sticky top-0">
         <div className="p-6 border-b border-border">
           <h1 className="font-serif text-2xl font-semibold tracking-tight">
-            Eva Effects
+            Paulo Guimarães
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Showcase de Animações
+            System design
           </p>
         </div>
 
@@ -583,6 +583,182 @@ export function AnimatedLogo({
 // ============================================
 // <AnimatedLogo size={80} speed={10} color="#1a1a1a" />
 // <AnimatedLogo size={120} speed={20} color="#4f46e5" autoPlay={false} />`
+  },
+  {
+    id: "animated-logo-only-square",
+    name: "Logo DNA - Only Square",
+    description: "Variação secundária da animação do DNA onde apenas a silhueta quadrada central é animada.",
+    category: "SVG Animation",
+    code: `// ============================================
+// ANIMATED LOGO COM LOTTIE REACT (COLORIZÁVEL)
+// ============================================
+// Instalação da dependência:
+// npm install lottie-react
+//
+// NOTA IMPORTANTE:
+// Certifique-se de copiar o arquivo JSON respectivo para o seu projeto:
+// (animation-dna-only-square.json)
+// ============================================
+
+"use client";
+
+import React from "react";
+import Lottie from "lottie-react";
+// Ajuste o caminho de importação conforme a estrutura de pastas!
+import animationData from "./data/animation-dna-only-square.json";
+
+interface DNAAnimatedLogoProps {
+  color?: string; // Ex: '#FF5733'
+  size?: number | string; // Ex: 300, '100%'
+  className?: string; // Tailwind opcional extra
+}
+
+export default function LogoDNAOnlySquare({ 
+  color = "#000000", // Preto Padrão
+  size  = 300,
+  className = ""
+}: DNAAnimatedLogoProps) {
+  return (
+    <div 
+      className={\`flex items-center justify-center \${className}\`} 
+      style={{ width: size, height: size }}
+    >
+      <div 
+         style={{ 
+            width: "100%", 
+            height: "100%", 
+            // SVG Filters ou currentColor injection para forçar a cor na base preta original
+            color: color 
+         }}
+      >
+        <Lottie 
+            animationData={animationData} 
+            loop={true} 
+            // Passa a cor do pai para as formas do SVG criadas pelo lottie (se suportadas)
+            className="w-full h-full [&>svg>g>g>path]:fill-current [&>svg>g>g>g>path]:fill-current"
+            
+            rendererSettings={{ 
+                preserveAspectRatio: "xMidYMid meet",
+                clearCanvas: true, // Garante que o canvas seja sempre transparente
+                className: "transparent-bg" 
+            }}
+        />
+      </div>
+    </div>
+  );
+}`
+  },
+  {
+    id: "animated-logo-square-clean",
+    name: "Logo DNA - Square Clean",
+    description: "Versão limpa da animação do DNA focando apenas na expansão e retração das bordas quadradas.",
+    category: "SVG Animation",
+    code: `// ============================================
+// ANIMATED LOGO COM LOTTIE REACT (COLORIZÁVEL)
+// ============================================
+// Instalação da dependência:
+// npm install lottie-react
+//
+// NOTA IMPORTANTE:
+// Certifique-se de copiar o arquivo JSON respectivo para o seu projeto:
+// (animation-square-clean.json)
+// ============================================
+
+"use client";
+
+import React from "react";
+import Lottie from "lottie-react";
+// Ajuste o caminho de importação conforme a estrutura de pastas!
+import animationData from "./data/animation-square-clean.json";
+
+interface DNASquareCleanProps {
+  color?: string; // Ex: 'blue', '#FFF'
+  size?: number | string; // Ex: 300, 'full'
+  className?: string; // CSS Opcional Tailwind
+}
+
+export default function LogoDNASquareClean({ 
+  color = "#000000",
+  size  = 300,
+  className = ""
+}: DNASquareCleanProps) {
+  return (
+    <div 
+        className={\`flex items-center justify-center \${className}\`}
+        style={{ width: size, height: size }}
+    >
+      <div style={{ width: "100%", height: "100%", color: color }}>
+        <Lottie 
+            animationData={animationData} 
+            loop={true}
+            // Utiliza fill-current do tailwind passando para dentro das paths geradas 
+            className="w-full h-full [&_path]:fill-current"
+            
+            rendererSettings={{ 
+                preserveAspectRatio: "xMidYMid meet",
+                clearCanvas: true 
+            }}
+        />
+      </div>
+    </div>
+  );
+}`
+  },
+  {
+    id: "animated-logo-data",
+    name: "Logo DNA - Data",
+    description: "Variação alternativa da animação do DNA focada em apresentação de dados ou conexão em rede.",
+    category: "SVG Animation",
+    code: `// ============================================
+// ANIMATED LOGO COM LOTTIE REACT (COLORIZÁVEL E TRANSPARENTE)
+// ============================================
+// Instalação da dependência:
+// npm install lottie-react
+//
+// NOTA IMPORTANTE:
+// Certifique-se de copiar o arquivo JSON respectivo para o seu projeto:
+// (animation-dna-data.json)
+// ============================================
+
+"use client";
+
+import React from "react";
+import Lottie from "lottie-react";
+// Ajuste o caminho de importação conforme a estrutura de pastas!
+import animationData from "./data/animation-dna-data.json";
+
+interface DNADataLogoProps {
+  color?: string; // Customiza a cor de preenchimento
+  size?: number | string; // Tamanho base
+  className?: string; // Classes HTML
+}
+
+export default function LogoDNAData({ 
+  color = "#000000",
+  size  = 300,
+  className = ""
+}: DNADataLogoProps) {
+  return (
+    <div 
+      className={\`flex items-center justify-center \${className}\`}
+      style={{ width: size, height: size }}
+    >
+      <div style={{ width: "100%", height: "100%", color: color }}>
+        <Lottie 
+            animationData={animationData} 
+            loop={true} 
+            // Injeta cor em todas as layers de shapes e strokes do SVG instanciado em tela
+            className="w-full h-full [&_path]:fill-current [&_path[stroke]]:stroke-current"
+            
+            rendererSettings={{ 
+                preserveAspectRatio: "xMidYMid meet",
+                clearCanvas: true // Fundo transparente por padrão
+            }}
+        />
+      </div>
+    </div>
+  );
+}`
   },
 
   // =============================================
@@ -1439,88 +1615,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   // =============================================
   // CATEGORIA: SCROLL EFFECTS (do novosite)
   // =============================================
-  {
-    id: "scroll-indicator",
-    name: "Scroll Indicator",
-    description: "Indicador fixed com quadrado que percorre o texto com rotação e text-mask invertido. Alterna entre frases em loop. Usa GSAP para animações.",
-    category: "Scroll Effects",
-    code: `// ============================================
-// SCROLL INDICATOR - INDICADOR DE SCROLL
-// ============================================
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-
-export default function ScrollIndicator() {
-  const squareRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLSpanElement>(null);
-  const maskRef = useRef<HTMLSpanElement>(null);
-  const squareSize = 14;
-
-  const phrases = ["ROLE PARA BAIXO", "PRESSIONE ESPAÇO", "PRESS SPACE"];
-  const [phraseIdx, setPhraseIdx] = useState(0);
-  const phrase = phrases[phraseIdx];
-  const [textWidth, setTextWidth] = useState(0);
-
-  useEffect(() => {
-    if (textRef.current) setTextWidth(textRef.current.offsetWidth);
-  }, [phrase]);
-
-  useEffect(() => {
-    if (!squareRef.current || !textRef.current || textWidth === 0) return;
-
-    const startX = -squareSize;
-    const endX = textWidth + squareSize;
-
-    gsap.set(squareRef.current, { x: startX });
-    gsap.fromTo([textRef.current, maskRef.current],
-      { opacity: 0 }, { opacity: 1, duration: 0.3 });
-
-    const tl = gsap.timeline({
-      onComplete: () => setPhraseIdx((i) => (i + 1) % phrases.length),
-    });
-
-    tl.to(squareRef.current, {
-      x: endX - startX, duration: 1.8, ease: "power4.in",
-      onUpdate() {
-        if (maskRef.current && squareRef.current) {
-          const squareX = gsap.getProperty(squareRef.current, "x");
-          maskRef.current.style.left = \`\${-squareX}px\`;
-        }
-      },
-    });
-
-    gsap.to(squareRef.current, { rotation: 360, duration: 1.8, repeat: -1, ease: "linear" });
-    gsap.to(squareRef.current, { scale: 1.05, duration: 0.6, repeat: -1, yoyo: true });
-
-    return () => { tl.kill(); };
-  }, [textWidth, phraseIdx]);
-
-  return (
-    <div style={{
-      position: "fixed", bottom: "40px", left: "50%", transform: "translateX(-50%)",
-      zIndex: 100, display: "flex", alignItems: "center", gap: "20px", pointerEvents: "none"
-    }}>
-      <div style={{ position: "relative", display: "inline-block" }}>
-        <span ref={textRef} style={{ fontSize: "0.6rem", letterSpacing: "0.15em", opacity: 0.3 }}>{phrase}</span>
-      </div>
-      <div ref={squareRef} style={{
-        position: "absolute", top: "50%", left: -squareSize,
-        width: squareSize, height: squareSize, backgroundColor: "#0d0202",
-        transform: "translateY(-50%)", zIndex: 3, borderRadius: "2px",
-        overflow: "hidden", boxShadow: "0 4px 15px rgba(0,0,0,0.2)"
-      }}>
-        <span ref={maskRef} style={{
-          position: "absolute", top: "50%", left: 0, right: 0,
-          transform: "translateY(-50%)", color: "#fff", whiteSpace: "nowrap",
-          mixBlendMode: "difference", fontSize: "0.6rem", letterSpacing: "0.15em"
-        }}>{phrase}</span>
-      </div>
-    </div>
-  );
-}`
-  },
   {
     id: "horizontal-scroll",
     name: "Horizontal Scroll",

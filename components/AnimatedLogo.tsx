@@ -43,14 +43,17 @@ export function AnimatedLogo({
 
     return (
         <div
-            className="relative flex items-center justify-center"
-            style={{ width: size, height: size, overflow: "hidden" }}
+            className="relative flex items-center justify-center overflow-hidden"
+            style={{ width: size, height: size }}
         >
             <Lottie
                 lottieRef={lottieRef}
                 animationData={animationData}
                 loop={true}
                 autoplay={isPlaying}
+                rendererSettings={{
+                    preserveAspectRatio: "xMidYMid meet"
+                }}
                 style={{ width: "100%", height: "100%" }}
             />
         </div>

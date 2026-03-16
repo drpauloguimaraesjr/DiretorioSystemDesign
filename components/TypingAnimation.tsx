@@ -22,8 +22,6 @@ export default function TypingAnimation({
     onComplete
 }: TypingAnimationProps) {
     const [displayedText, setDisplayedText] = useState("");
-    const [isTyping, setIsTyping] = useState(false);
-    const [showBlink, setShowBlink] = useState(true);
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -31,7 +29,6 @@ export default function TypingAnimation({
         if (!isInView) return;
 
         const timeout = setTimeout(() => {
-            setIsTyping(true);
             let currentIndex = 0;
 
             const typeInterval = setInterval(() => {
@@ -40,8 +37,6 @@ export default function TypingAnimation({
                     currentIndex++;
                 } else {
                     clearInterval(typeInterval);
-                    setIsTyping(false);
-                    setShowBlink(false);
                     if (onComplete) onComplete();
                 }
             }, speed);

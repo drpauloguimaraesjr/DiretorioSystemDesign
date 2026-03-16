@@ -17,6 +17,9 @@ const previewComponents: Record<string, React.LazyExoticComponent<ComponentType<
   'reveal-letter': lazy(() => import('@/components/previews/RevealTextPreview')),
   // New UI Components
   'animated-logo-dna': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.AnimatedLogoDNAPreview }))),
+  'animated-logo-only-square': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.AnimatedLogoOnlySquarePreview }))),
+  'animated-logo-square-clean': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.AnimatedLogoSquareCleanPreview }))),
+  'animated-logo-data': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.AnimatedLogoDataPreview }))),
   'animate-tabs': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.AnimateTabsPreview }))),
   'share-button': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.ShareButtonPreview }))),
   'theme-toggler': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.ThemeTogglerPreview }))),
@@ -31,13 +34,12 @@ const previewComponents: Record<string, React.LazyExoticComponent<ComponentType<
   'preloader': lazy(() => import('@/components/previews/NovoSitePreview').then(m => ({ default: m.PreloaderPreview }))),
   'page-transition': lazy(() => import('@/components/previews/NovoSitePreview').then(m => ({ default: m.PageTransitionPreview }))),
   'smooth-scroll': lazy(() => import('@/components/previews/NovoSitePreview').then(m => ({ default: m.SmoothScrollPreview }))),
-  'scroll-indicator': lazy(() => import('@/components/previews/NovoSitePreview').then(m => ({ default: m.ScrollIndicatorPreview }))),
   'horizontal-scroll': lazy(() => import('@/components/previews/NovoSitePreview').then(m => ({ default: m.HorizontalScrollPreview }))),
   'mist-background': lazy(() => import('@/components/previews/NovoSitePreview').then(m => ({ default: m.MistBackgroundPreview }))),
   'hero-carousel': lazy(() => import('@/components/previews/NovoSitePreview').then(m => ({ default: m.HeroCarouselPreview }))),
   'process-timeline': lazy(() => import('@/components/previews/NovoSitePreview').then(m => ({ default: m.ProcessTimelinePreview }))),
   // Branding
-  'nutribuddy-logo': lazy(() => import('@/components/previews/LogoBrandPreview').then(m => ({ default: m.NutriBuddyLogoPreview }))),
+  'nutribuddy-logo': lazy(() => import('@/components/LogoBuilder')),
 };
 
 const systemPreviewComponents: Record<string, React.LazyExoticComponent<ComponentType<object>>> = {
@@ -57,10 +59,10 @@ export default function Home() {
       <aside className="w-72 border-r border-border flex flex-col h-screen sticky top-0">
         <div className="p-6 border-b border-border">
           <h1 className="font-serif text-2xl font-semibold tracking-tight">
-            Eva Effects
+            Paulo Guimarães
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Showcase de Animações
+            System design
           </p>
         </div>
 
@@ -162,7 +164,7 @@ export default function Home() {
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.4 }}
               className="border border-border rounded-sm overflow-hidden bg-card"
-              style={{ height: '400px' }}
+              style={{ minHeight: '400px' }}
             >
               <Suspense
                 fallback={

@@ -340,52 +340,6 @@ export function SmoothScrollPreview() {
 }
 
 // ============================================
-// SCROLL INDICATOR PREVIEW
-// ============================================
-export function ScrollIndicatorPreview() {
-    const phrases = ["ROLE PARA BAIXO", "PRESSIONE ESPAÇO", "PRESS SPACE"];
-    const [idx, setIdx] = useState(0);
-    const [squarePos, setSquarePos] = useState(0);
-
-    useEffect(() => {
-        let frame: number;
-        const animate = () => {
-            setSquarePos(prev => {
-                if (prev >= 100) {
-                    setIdx(i => (i + 1) % phrases.length);
-                    return 0;
-                }
-                return prev + 0.8;
-            });
-            frame = requestAnimationFrame(animate);
-        };
-        frame = requestAnimationFrame(animate);
-        return () => cancelAnimationFrame(frame);
-    }, []);
-
-    return (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-neutral-50 to-neutral-100">
-            <div className="relative" style={{ minWidth: 200 }}>
-                <span className="font-mono text-xs tracking-widest opacity-30">{phrases[idx]}</span>
-                <motion.div
-                    style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: `${squarePos}%`,
-                        transform: "translate(-50%, -50%)",
-                        width: 14, height: 14,
-                        backgroundColor: "#1a1a18",
-                        borderRadius: 2,
-                    }}
-                    animate={{ rotate: squarePos * 3.6, scale: [1, 1.05, 1] }}
-                    transition={{ scale: { repeat: Infinity, duration: 0.6 } }}
-                />
-            </div>
-        </div>
-    );
-}
-
-// ============================================
 // HORIZONTAL SCROLL PREVIEW
 // ============================================
 export function HorizontalScrollPreview() {
