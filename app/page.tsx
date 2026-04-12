@@ -16,9 +16,6 @@ const previewComponents: Record<string, React.LazyExoticComponent<ComponentType<
   'reveal-text': lazy(() => import('@/components/previews/RevealTextPreview')),
   'reveal-letter': lazy(() => import('@/components/previews/RevealTextPreview')),
   // New UI Components
-  'animated-logo-dna': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.AnimatedLogoDNAPreview }))),
-  'animated-logo-only-square': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.AnimatedLogoOnlySquarePreview }))),
-  'animated-logo-square-clean': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.AnimatedLogoSquareCleanPreview }))),
   'animated-logo-data': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.AnimatedLogoDataPreview }))),
   'animate-tabs': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.AnimateTabsPreview }))),
   'share-button': lazy(() => import('@/components/previews/UIComponentsPreview').then(m => ({ default: m.ShareButtonPreview }))),

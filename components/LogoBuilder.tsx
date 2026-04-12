@@ -133,15 +133,15 @@ export default function LogoBuilder() {
     };
 
     return (
-        <div className="flex flex-col md:flex-row gap-8 w-full max-w-6xl mx-auto p-4 md:p-8 rounded-sm bg-neutral-50 border border-neutral-200 text-neutral-900 font-sans shadow-sm">
-            
-            <div className="flex-1 space-y-4 flex flex-col items-center">
-                <div className="w-full flex justify-between items-center mb-2">
+        <div className="flex flex-col md:flex-row gap-6 w-full p-6 text-neutral-900 font-sans">
+
+            <div className="flex-1 min-w-0 space-y-4 flex flex-col">
+                <div className="w-full flex justify-between items-center">
                     <h2 className="font-serif text-xl tracking-wide uppercase">Visualizador</h2>
                 </div>
-                
-                <div 
-                    className="relative flex items-center justify-center rounded-sm border border-neutral-300 overflow-hidden w-full aspect-square"
+
+                <div
+                    className="relative flex items-center justify-center rounded-sm border border-neutral-300 overflow-hidden w-full h-80"
                     style={containerStyle}
                 >
                     <svg
@@ -170,7 +170,7 @@ export default function LogoBuilder() {
 
                 <canvas ref={canvasRef} style={{ display: "none" }} />
                 
-                <div className="grid grid-cols-2 gap-3 w-full mt-4">
+                <div className="grid grid-cols-2 gap-3 w-full">
                     <button 
                         onClick={downloadSvg}
                         className="flex items-center justify-center gap-2 px-4 py-3 bg-white border border-neutral-300 hover:bg-neutral-100 transition-colors rounded-sm text-sm font-medium"
@@ -186,7 +186,7 @@ export default function LogoBuilder() {
                 </div>
             </div>
 
-            <div className="flex-1 flex flex-col gap-6">
+            <div className="flex-1 min-w-0 flex flex-col gap-6">
                 
                 <div className="space-y-6">
                     <h3 className="font-mono text-xs tracking-widest text-neutral-500 uppercase border-b border-neutral-200 pb-2">Configurações da Marca</h3>
